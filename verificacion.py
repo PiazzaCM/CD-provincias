@@ -1,6 +1,7 @@
 import csv
 import os
 
+# Conteo total de localidades desde el archivo localidades.csv
 conteo_total_localidades = 0
 with open('localidades.csv', 'r') as file:
     next(file)
