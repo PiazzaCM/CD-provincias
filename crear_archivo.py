@@ -5,7 +5,10 @@ try:
     db = mysql.connect("localhost", "root", "", "localidades")
     cursor = db.cursor()
 
-
+#eliminar tabla si existe
+    cursor.execute("DROP TABLE IF EXISTS localidades")
+    db.commit()
+    print("Tabla eliminada correctamente.")
 
 # Crear tabla localidades si no existe
     create_table_query = """
