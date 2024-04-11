@@ -1,19 +1,24 @@
 import csv
-import MySQLdb as mysql
+import os
 
-conteo = {}
-
+conteo_total_localidades = 0
 with open('localidades.csv', 'r') as file:
     next(file)
     for line in file:
-        campos = line.strip().split(',')
-        provincia = campos[0]
-        if provincia in conteo:
-            conteo[provincia] += 1
-        else:
-            conteo[provincia] = 1
-for provincia, conteo in conteo.items():
-    print(f"{provincia}: {conteo}")
+        conteo_total_localidades += 1
+
+# Conteo total de localidades desde archivos CSV en la carpeta 'provincias'
+carpeta = 'provincias/'
+conteo_total_provincias = 0
+archivos_csv = [archivo for archivo in os.listdir(carpeta) if archivo.endswith('.csv')]
+for archivo in archivos_csv:
+    with open(os.path.join(carpeta, archivo), 'r') as file:
+        conteo_total_provincias += sum(1 for line in file)
+
+# Imprimimos los resultados
+print(f"Total de localidades en localidades.csv: {conteo_total_localidades}")
+print(f"Total de localidades en archivos de la carpeta provincias: {conteo_total_provincias}")
+
 
 
 
